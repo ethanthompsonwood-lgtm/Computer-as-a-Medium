@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class HealthPack : MonoBehaviour
 {
-    public int enemyHealth = 10;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,22 +11,19 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Death();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Sword"))
+        if (other.CompareTag("Player"))
         {
-            enemyHealth -= 10;
-        }
-    }
+            PlayerHealth health = other.GetComponent<PlayerHealth>();
 
-    void Death()
-    {
-        if (enemyHealth <= 0)
-        {
-            Destroy(gameObject);
+            if(health.health - 10 < 90){
+                health.health += 10;
+                Destroy(gameObject);
+            }
         }
     }
 }

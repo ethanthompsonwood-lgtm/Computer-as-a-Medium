@@ -1,19 +1,20 @@
 using UnityEngine;
 using TMPro;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerMana : MonoBehaviour
 {
-    public int health = 100;
-    public TMP_Text healthText;
+
+    public int mana = 50;
+    public TMP_Text manaText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        healthText.text = "Health: " + health;
+        manaText.text = "Mana: " + mana;
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthText.text = "Health: " + health;
+        manaText.text = "Mana: " + mana;
     }
 }
