@@ -12,17 +12,58 @@ public class PlayerMovement : MonoBehaviour
     public Sprite down;
     public Sprite left;
     public Sprite right;
-    public Sprite Weapon;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    public Transform Weapon;
+    public float weaponOffsetX = 3f;   
+    public float weaponOffsetY = 3f;
+    public GameObject bulletPrefab;          
+    private Vector2 facing = Vector2.right;  
 
+    void FaceLeft()
+    {
+        Weapon.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        Weapon.localPosition = new Vector3(-weaponOffsetX, -1f, 0f);
+        Weapon.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        facing = Vector2.left;
     }
 
-    // Update is called once per frame
+    void FaceRight()
+    {
+        Weapon.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
+        Weapon.localPosition = new Vector3(weaponOffsetX, -1f, 0f);
+        Weapon.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        facing = Vector2.right;
+    }
+
+    void FaceUp()
+    {
+        Weapon.localRotation = Quaternion.Euler(0f, 0f, -90f);
+        Weapon.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        Weapon.localPosition = new Vector3(0f, weaponOffsetY, 0f);
+        facing = Vector2.up;
+    }
+
+    void FaceDown()
+    {
+        Weapon.localRotation = Quaternion.Euler(0f, 0f, 90f);
+        Weapon.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        Weapon.localPosition = new Vector3(0f, -weaponOffsetY, 0f);
+        facing = Vector2.down;
+    }
+
+    void Shoot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, Weapon.position, Quaternion.identity);
+        bullet.GetComponent<Bullet>().direction = facing;
+    }
+
     void Update()
     {
         Movement();
+
+        if (Keyboard.current.fKey.wasPressedThisFrame)
+        {
+            Shoot();
+        }
     }
 
     void Movement()
@@ -33,12 +74,13 @@ public class PlayerMovement : MonoBehaviour
         {
             speedX = -moveSpeed;
             spriteRenderer.sprite = left;
-          
+            FaceLeft();
         }
         else if (Keyboard.current.dKey.isPressed)
         {
             speedX = moveSpeed;
             spriteRenderer.sprite = right;
+            FaceRight();
         }
         else
         {
@@ -50,11 +92,13 @@ public class PlayerMovement : MonoBehaviour
         {
             speedY = moveSpeed;
             spriteRenderer.sprite = top;
+            FaceUp();
         }
         else if (Keyboard.current.sKey.isPressed)
         {
             speedY = -moveSpeed;
             spriteRenderer.sprite = down;
+            FaceDown();
         }
         else
         {

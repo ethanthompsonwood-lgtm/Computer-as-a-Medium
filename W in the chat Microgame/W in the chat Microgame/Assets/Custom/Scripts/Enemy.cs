@@ -1,7 +1,9 @@
 using UnityEngine;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject hurtUI;
     public int enemyHealth = 50;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +22,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("E");
         if (other.CompareTag("Bullet"))
         {
+            StartCoroutine(Hurt());
             Destroy(other.gameObject);
             enemyHealth -= 10;
         }
@@ -30,6 +33,14 @@ public class Enemy : MonoBehaviour
         if (enemyHealth <= 0)
         {
             Destroy(gameObject);
+            hurtUI.SetActive(false);
         }
+    }
+
+    IEnumerator Hurt()
+    {
+        hurtUI.SetActive(true);
+        yield return new WaitForSeconds(.33f);
+        hurtUI.SetActive(false);
     }
 }

@@ -3,19 +3,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
-    public float destroyTime = 3f;
+    public float lifetime = 3f;
+    public Vector2 direction;
+    private Rigidbody2D rb;
 
-    public Rigidbody2D rb; 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb.linearVelocity = transform.up * speed;
-        Destroy(gameObject, destroyTime);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        rb = GetComponent<Rigidbody2D>();
+        rb.linearVelocity = direction.normalized * speed;
+        Destroy(gameObject, lifetime);
     }
 }
