@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int enemyHealth = 10;
+    public int enemyHealth = 50;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,8 +17,10 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Sword"))
+        Debug.Log("E");
+        if (other.CompareTag("Bullet"))
         {
+            Destroy(other.gameObject);
             enemyHealth -= 10;
         }
     }
