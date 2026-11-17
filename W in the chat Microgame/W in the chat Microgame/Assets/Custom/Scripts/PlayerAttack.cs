@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerAttack : MonoBehaviour
 {
     public Animator animator;
+    public GameObject bulletPrefab;
+    public Transform firePoint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,13 +15,13 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Attack();
+        
         
     }
 
     void Attack()
     {
-        if (Keyboard.current.fKey.isPressed)
+        if (Keyboard.current.fKey.wasPressedThisFrame)
         {
             animator.SetBool("attack", true);
         }
@@ -28,4 +30,12 @@ public class PlayerAttack : MonoBehaviour
             animator.SetBool("attack", false);
         }
     }
+
+    /*void Shoot()
+    { 
+        if (Keyboard.current.fKey.wasPressedThisFrame)
+        {
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        }
+    }*/
 }

@@ -15,7 +15,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Shoot();
+        
         
     }
 
@@ -31,11 +31,11 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void Shoot()
+    /*void Shoot()
     { 
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         }
-    }
+    }*/
 }
