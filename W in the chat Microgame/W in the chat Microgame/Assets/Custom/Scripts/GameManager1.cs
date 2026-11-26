@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject gameOverUI;
     public GameObject tryHarderUI;
+    public SwitchScene switchSceneScript;
     private bool isGameOver = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 void Start()
@@ -32,5 +33,6 @@ void Start()
         yield return new WaitForSeconds(3f);
         tryHarderUI.SetActive(false);
         gameOverUI.SetActive(true);
+        switchSceneScript.SwitchScenes();
     }
 }
