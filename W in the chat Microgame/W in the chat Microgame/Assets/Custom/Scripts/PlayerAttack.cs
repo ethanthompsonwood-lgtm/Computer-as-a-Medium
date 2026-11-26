@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Animator animator;
+    
     public GameObject bulletPrefab;
     public Transform firePoint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,19 +23,19 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
-            animator.SetBool("attack", true);
+            Shoot();
         }
         else
         {
-            animator.SetBool("attack", false);
+            
         }
     }
 
-    /*void Shoot()
+    void Shoot()
     { 
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         }
-    }*/
+    }
 }
