@@ -18,9 +18,9 @@ public class SpawnEnemy : MonoBehaviour
     }
     IEnumerator SpawnEnemyNow()
     {
-        while (isSpawning == true)
+        while (true)
         {
-            Spawn();
+            if(isSpawning) Spawn();
             yield return new WaitForSeconds(3f);
         }
     }
