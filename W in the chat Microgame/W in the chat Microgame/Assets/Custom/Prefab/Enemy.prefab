@@ -151,5 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ab6223380bee948824395765a6601f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemy
-  hurtUI: {fileID: 0}
+  hurtUI: {fileID: 1118576416447372446, guid: 42aa9a93fad584f44ad33c9c45749a48, type: 3}
   enemyHealth: 50
